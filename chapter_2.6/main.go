@@ -38,7 +38,11 @@ func showSnippet(w http.ResponseWriter, r *http.Request) {
 	}
 	// Use the fmt.Fprintf() function to interpolate the id value with our response
 	// and write it to the http.ResponseWriter.
-	fmt.Fprintf(w, "Display a specific snippet with ID %d...", id)
+	values := r.URL.Query()
+	for k, v := range values {
+		fmt.Println(k, " => ", v)
+	}
+	fmt.Fprintf(w, "Display a specific snippet with ID %d ...", id)
 }
 
 // Add a createSnippet handler function.
