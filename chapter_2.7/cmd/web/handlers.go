@@ -45,6 +45,10 @@ func showSnippet(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Display a specific snippet with ID %d...", id)
 }
 
+func showFeatures(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Features..."))
+}
+
 func createSnippet(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		w.Header().Set("Allow", http.MethodPost)

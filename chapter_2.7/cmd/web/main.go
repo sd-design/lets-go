@@ -8,7 +8,8 @@ import (
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", home)
-	mux.HandleFunc("/snippet", showSnippet)
+	mux.HandleFunc("/features/", showFeatures)
+	mux.HandleFunc("/snippet/", showSnippet)
 	mux.HandleFunc("/snippet/create", createSnippet)
 
 	// Create a file server which serves files out of the "./ui/static" directory.
