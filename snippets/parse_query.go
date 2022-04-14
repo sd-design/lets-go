@@ -26,11 +26,15 @@ func main() {
 
 func echoHandler(w http.ResponseWriter, r *http.Request) {
 	user := User{}
+	if r.Method != http.MethodPost {
+		// Use the Header().Set() method to add an 'Allow: POST' header
 
-	err := json.NewDecoder(r.Body).Decode(&user)
-	if err != nil {
-		panic(err)
+		w.Header().Set("Allow", http.MethodPost)
+		w.WriteHeader(405)
+		w.Write([]byte("Method Not Allowed"))
+		return
 	}
+	json.NewDecoder(r.Body).Decode(&user)
 
 	user.CreatedAt = time.Now().Local()
 
