@@ -2,15 +2,19 @@ package main
 
 import "fmt"
 
+/*
+Напишите функцию double_m(), которая должна принимать на вход два целых числа a и b и возвращать сумму квадратов чисел от a до b (включительно).
+*/
+func double_m(a, b int) int {
+	var res int = 0
+
+	for i := a; b >= i; i++ {
+		res += (i * i)
+	}
+	return res
+}
+
 func main() {
-	list := [11]string{"Ноль", "Один", "Два", "Три", "Четыре", "Пять", "Шесть", "Семь", "Восемь", "Девять", "Десять"}
-	var num1, num2, num3 int
-	fmt.Scanln(&num1)
-	fmt.Scanln(&num2)
-	fmt.Scanln(&num3)
-	fmt.Println(list[num1])
-
-	fmt.Println(list[num2])
-
-	fmt.Println(list[num3])
+	response := double_m(2, 6)
+	fmt.Println(response)
 }
