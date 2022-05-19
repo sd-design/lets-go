@@ -14,21 +14,8 @@ import (
 // Change the signature of the home handler so it is defined as a method against
 // *application.
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	//Example for list of all posts
-	// if r.URL.Path != "/" {
-	// 	app.notFound(w)
-	// 	return
-	// }
-	// s, err := app.snippets.Latest()
-	// if err != nil {
-	// 	app.serverError(w, err)
-	// 	return
-	// }
-	// for _, snippet := range s {
-	// 	fmt.Fprintf(w, "%v\n", snippet)
-	// }
 	if r.URL.Path != "/" {
-		http.NotFound(w, r)
+		app.notFound(w)
 		return
 	}
 	s, err := app.snippets.Latest()
@@ -47,10 +34,10 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	}
 	ts, err := template.ParseFiles(files...)
 	if err != nil {
-		app.serverError(w, err) // Use the serverError() helper.
+		app.serverError(w, err)
 		return
 	}
-	err = ts.Execute(w, nil)
+	err = ts.Execute(w, data)
 	if err != nil {
 		app.serverError(w, err) // Use the serverError() helper.
 	}
@@ -83,7 +70,7 @@ func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
 	}
 	ts, err := template.ParseFiles(files...)
 	if err != nil {
-		app.serverError(w, err)
+		app.serverError(w, err) // Use the serverError() helper.
 		return
 	}
 	// Pass in the templateData struct when executing the template.
