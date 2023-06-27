@@ -9,4 +9,6 @@ func main() {
 	a += 2
 	*p = *p - 1
 	fmt.Println(a)
+	fmt.Println(p)
+	fmt.Println(*p)
 }
