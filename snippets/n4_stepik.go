@@ -3,7 +3,6 @@ package main
 import "fmt"
 
 func n4() {
-	var num1 int
 
 	var workArray [10]uint8
 
